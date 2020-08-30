@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock head %}
+ 
+{% block body %}
+<div class="content">
+  <h1>ATUALIZAR</h1>
+  <form action="/update/{{ task.id }}" method="POST">
+    <input type="text" value='{{ task.content }}' name="task" placeholder="Atualize sua tarefa">
+    <button type="submit">Enviar anterações</button>
+  </form>
+</div>
+{% endblock body %}

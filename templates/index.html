@@ -4,6 +4,33 @@
 {% endblock head %}
  
 {% block body %}
-<h1>Hello World</h1>
-<p>Isso aqui é um parágrafo</p>
+<div class="content">
+  <h1>Coisas pra fazer</h1>
+  {% if tasks|length < 1%}
+  <h4>Não existem tarefas pendentes</h4>
+  {% else %}
+  <table>
+    <tr>
+      <th>Tarefa</th>
+      <th>Criado em</th>
+      <th>Ações</th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+      <td>{{task.content}}</td>
+      <td>{{task.date_created.date()}}</td>
+      <td>
+        <a href="/delete/{{task.id}}">Remover</a>
+        <br/>
+        <a href="/update/{{task.id}}">Update</a>
+      </td>
+    </tr>
+  </table>
+  {% endfor %}
+  {% endif %}
+  <form action="/" method="POST">
+    <input type="text" name="task" placeholder="Digite aqui sua tarefa">
+    <input type="submit">
+  </form>
+</div>
 {% endblock body %}
